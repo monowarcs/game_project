@@ -1,0 +1,173 @@
+/* --- Game View Shell --- */
+#game-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-header {
+    background-color: var(--bg-card);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--glass-border);
+}
+
+.btn-back {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-muted);
+}
+
+.btn-back:hover {
+    background: var(--bg-panel);
+}
+
+.game-container-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+}
+
+.game-stats-top {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+#game-container {
+    position: relative;
+    background-color: #000;
+    border: 2px solid rgba(0, 255, 204, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    
+    /* Default Max size, dynamically adjusted by JS per game aspect ratio */
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    max-height: 60vh;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated; /* Good for retro look */
+}
+
+/* Game Over / Start Overlay */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.game-overlay h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+.game-overlay p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.game-controls-bar {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* --- Mobile Controls (Virtual) --- */
+.mobile-controls {
+    display: none; /* hidden on desktop via media query or default */
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border-top: var(--glass-border);
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dpad {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.dpad-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: manipulation; /* Prevent zoom */
+    user-select: none;
+}
+
+.dpad-btn:active {
+    background: rgba(0, 255, 204, 0.4);
+}
+
+.dpad-btn.up { top: 0; left: 50px; }
+.dpad-btn.down { bottom: 0; left: 50px; }
+.dpad-btn.left { top: 50px; left: 0; }
+.dpad-btn.right { top: 50px; right: 0; }
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 0, 127, 0.2);
+    border: 2px solid var(--secondary);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.action-btn:active {
+    background: rgba(255, 0, 127, 0.6);
+}

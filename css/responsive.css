@@ -1,0 +1,82 @@
+/* Tablet */
+@media (max-width: 1024px) {
+    .content-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .search-box {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    
+    .filter-group {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 0;
+    }
+    
+    .filter-group ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero {
+        padding: 3rem 1rem;
+    }
+    
+    .stats-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .game-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Game View Mobile Tweaks */
+    .game-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .game-stats-top {
+        font-size: 1rem;
+    }
+
+    /* Mobile Controls shown on small screens if active */
+    .mobile-controls {
+        display: flex !important;
+    }
+    
+    .mobile-controls.hidden {
+        display: none !important;
+    }
+}
