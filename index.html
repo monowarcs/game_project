@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game Arcade - Free Browser Games</title>
+    <meta name="description" content="Play 20 free browser games instantly. No download required. Action, Puzzle, RPG, and more!">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Main Application View -->
+    <div id="app-view">
+        <header>
+            <div class="header-container">
+                <h1 class="logo">GAME ARCADE</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-filter="all">Home</a></li>
+                        <li><a href="#games" class="nav-link">Games</a></li>
+                        <li><a href="#favorites" class="nav-link" data-filter="favorites">Favorites</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>PLAY. COMPETE. HAVE FUN.</h2>
+                    <p>100% Free Browser Games. Play instantly — no download required.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="explore-btn">EXPLORE GAMES</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section (Optional but good) -->
+            <section class="stats-bar" id="stats-bar">
+                <div class="stat">Games Played: <span id="stat-played">0</span></div>
+                <div class="stat">Favorites: <span id="stat-favorites">0</span></div>
+            </section>
+
+            <!-- Main Content Area with Sidebar -->
+            <div class="content-container" id="games">
+                <!-- Sidebar / Filters -->
+                <aside class="sidebar">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search games...">
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Difficulty</h3>
+                        <ul id="difficulty-filters">
+                            <li><button class="filter-btn active" data-difficulty="all">All</button></li>
+                            <li><button class="filter-btn" data-difficulty="easy">Easy</button></li>
+                            <li><button class="filter-btn" data-difficulty="hard">Hard</button></li>
+                            <li><button class="filter-btn" data-difficulty="multiplayer">Multiplayer</button></li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Categories</h3>
+                        <ul id="category-filters">
+                            <li><button class="filter-btn active" data-category="all">All</button></li>
+                            <li><button class="filter-btn" data-category="arcade">Arcade</button></li>
+                            <li><button class="filter-btn" data-category="puzzle">Puzzle</button></li>
+                            <li><button class="filter-btn" data-category="action">Action</button></li>
+                            <li><button class="filter-btn" data-category="rpg">RPG</button></li>
+                            <li><button class="filter-btn" data-category="survival">Survival</button></li>
+                            <li><button class="filter-btn" data-category="multiplayer">Multiplayer</button></li>
+                            <li><button class="filter-btn" data-category="racing">Racing</button></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Game Grid -->
+                <section class="game-grid-container">
+                    <div id="game-grid" class="game-grid">
+                        <!-- Game Cards will be injected here via JS -->
+                    </div>
+                    <div id="no-results" class="hidden">
+                        <p>No games found matching your search.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dedicated Game Playing View (Hidden by default) -->
+    <div id="game-view" class="hidden">
+        <header class="game-header">
+            <button class="btn btn-back" id="back-btn">← Back to Games</button>
+            <h2 id="current-game-title">GAME TITLE</h2>
+            <div class="game-actions-top">
+                <button class="btn-icon" id="favorite-toggle-btn">♡</button>
+            </div>
+        </header>
+
+        <div class="game-container-wrapper">
+            <div class="game-stats-top">
+                <div class="score-display">Score: <span id="current-score">0</span></div>
+                <div class="score-display">Best: <span id="best-score">0</span></div>
+            </div>
+
+            <div id="game-container">
+                <!-- Canvas will be injected or managed here by game engines -->
+                <canvas id="game-canvas"></canvas>
+                
+                <!-- Overlay for Game Over / Pause / Start -->
+                <div id="game-overlay" class="game-overlay">
+                    <h3 id="overlay-title">Game Title</h3>
+                    <p id="overlay-desc">Press Start to Play</p>
+                    <button class="btn btn-primary" id="overlay-btn">START</button>
+                </div>
+            </div>
+
+            <div class="game-controls-bar">
+                <button class="btn" id="pause-btn">PAUSE</button>
+                <button class="btn" id="restart-btn">RESTART</button>
+                <button class="btn btn-danger" id="exit-btn">EXIT</button>
+            </div>
+        </div>
+
+        <!-- Virtual Mobile Controls (Hidden on desktop) -->
+        <div id="mobile-controls" class="mobile-controls hidden">
+            <!-- Dynamically populated based on game needs -->
+            <div class="dpad">
+                <button class="dpad-btn up" id="btn-up">↑</button>
+                <button class="dpad-btn left" id="btn-left">←</button>
+                <button class="dpad-btn right" id="btn-right">→</button>
+                <button class="dpad-btn down" id="btn-down">↓</button>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn" id="btn-a">A</button>
+                <button class="action-btn" id="btn-b">B</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/ui.js"></script>
+    
+    <!-- Game Engines (Loaded dynamically or all at once? Let's load them upfront for a true static bundle without fetch complexity) -->
+    <script src="js/games/snake.js"></script>
+    <script src="js/games/flappy-bird.js"></script>
+    <script src="js/games/pong.js"></script>
+    <script src="js/games/breakout.js"></script>
+    <script src="js/games/tetris.js"></script>
+    <script src="js/games/2048.js"></script>
+    
+    <script src="js/games/dungeon-crawler.js"></script>
+    <script src="js/games/mini-rpg.js"></script>
+    <script src="js/games/pixel-adventure.js"></script>
+    <script src="js/games/zombie-apocalypse.js"></script>
+    <script src="js/games/survival-island.js"></script>
+    <script src="js/games/treasure-hunter.js"></script>
+    <script src="js/games/dungeon-escape.js"></script>
+    <script src="js/games/monster-hunter.js"></script>
+    <script src="js/games/quest-adventure.js"></script>
+    
+    <script src="js/games/2player-pong.js"></script>
+    <script src="js/games/2player-snake.js"></script>
+    <script src="js/games/2player-tank.js"></script>
+    <script src="js/games/2player-racing.js"></script>
+    <script src="js/games/2player-tictactoe.js"></script>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
